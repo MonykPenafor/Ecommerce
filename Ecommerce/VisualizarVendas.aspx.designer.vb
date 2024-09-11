@@ -11,5 +11,5 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Contact
+Partial Public Class VisualizarVendas
 End Class
