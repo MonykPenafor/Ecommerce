@@ -46,9 +46,9 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/CadastroProdutos.aspx">Cadastro de produtos</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/RegistroVendas.aspx">Registro de vendas</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/VisualizarVendas.aspx">Visualizar vendas</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/WebForms/CadastroProdutos.aspx">Cadastro de produtos</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/WebForms/RegistroVendas.aspx">Registro de vendas</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/WebForms/VisualizarVendas.aspx">Visualizar vendas</a></li>
                     </ul>
                 </div>
             </div>
