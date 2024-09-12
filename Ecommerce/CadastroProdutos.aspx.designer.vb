@@ -12,4 +12,40 @@ Option Explicit On
 
 
 Partial Public Class CadastroProdutos
+
+    '''<summary>
+    '''codigo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents codigo As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''descricao control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents descricao As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''precoUnitario control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents precoUnitario As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''saldoEmEstoque control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents saldoEmEstoque As Global.System.Web.UI.WebControls.TextBox
 End Class

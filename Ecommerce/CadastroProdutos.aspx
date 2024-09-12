@@ -5,5 +5,19 @@
         <h2 id="title"><%: Title %>.</h2>
         <p>Your app description page.</p>
         <p>Use this area to provide additional information.</p>
+
+
+
+        <div class="col">
+
+            <asp:TextBox ID="codigo" runat="server" MaxLength="30" placeholder="Codigo"></asp:TextBox>
+            <asp:TextBox ID="descricao" runat="server" MaxLength="30" placeholder="Descrição"></asp:TextBox>
+            <asp:TextBox ID="precoUnitario" runat="server" MaxLength="30" placeholder="Preço Unitário"></asp:TextBox>
+            <asp:TextBox ID="saldoEmEstoque" runat="server" MaxLength="30" placeholder="Saldo em Estoque"></asp:TextBox>
+
+        </div>
+
+
+
     </main>
 </asp:Content>
