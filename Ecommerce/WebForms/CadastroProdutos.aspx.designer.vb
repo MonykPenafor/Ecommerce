@@ -14,47 +14,65 @@ Option Explicit On
 Partial Public Class CadastroProdutos
 
     '''<summary>
-    '''codigo control.
+    '''txtCodigo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents codigo As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtCodigo As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''btnLogin control.
+    '''BtnCarregar control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnLogin As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents BtnCarregar As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''descricao control.
+    '''txtDescricao control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents descricao As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtDescricao As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''precoUnitario control.
+    '''txtSaldoEstoque control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents precoUnitario As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtSaldoEstoque As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''saldoEmEstoque control.
+    '''txtPrecoUnitario control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents saldoEmEstoque As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtPrecoUnitario As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''BtnInserir control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents BtnInserir As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''BtnSalvarAlteracoes control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents BtnSalvarAlteracoes As Global.System.Web.UI.WebControls.Button
 End Class

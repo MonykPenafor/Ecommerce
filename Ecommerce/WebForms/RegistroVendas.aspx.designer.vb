@@ -12,4 +12,58 @@ Option Explicit On
 
 
 Partial Public Class RegistroVendas
+
+    '''<summary>
+    '''txtCliente control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCliente As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''DdlProdutos control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DdlProdutos As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''txtQuantidade control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtQuantidade As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtPrecoUnitario control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPrecoUnitario As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''BtnInserir control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents BtnInserir As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''BtnGerarVenda control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents BtnGerarVenda As Global.System.Web.UI.WebControls.Button
 End Class
