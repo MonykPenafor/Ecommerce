@@ -144,6 +144,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="WebForms\PaginaPrincipal.aspx" />
     <Content Include="WebForms\RegistroVendas.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -207,6 +208,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
+    <Compile Include="Modelos\Produto.vb" />
     <Compile Include="WebForms\CadastroProdutos.aspx.designer.vb">
       <DependentUpon>CadastroProdutos.aspx</DependentUpon>
     </Compile>
@@ -235,6 +237,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="WebForms\PaginaPrincipal.aspx.designer.vb">
+      <DependentUpon>PaginaPrincipal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\PaginaPrincipal.aspx.vb">
+      <DependentUpon>PaginaPrincipal.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="WebForms\RegistroVendas.aspx.designer.vb">
       <DependentUpon>RegistroVendas.aspx</DependentUpon>
