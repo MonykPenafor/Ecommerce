@@ -4,8 +4,6 @@
     <main aria-labelledby="title">
         <h2 id="title"><%: Title %></h2>
 
-        <div id="toast"></div>
-
         <div class="row">
 
             <div class="form-group col-2">
@@ -13,7 +11,7 @@
                 <div class="input-group">
                     <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control no-spin" placeholder="Código" TextMode="Number"></asp:TextBox>
                     <div class="input-group-append">
-                        <asp:Button ID="BtnCarregar" runat="server" Text="Carregar" CssClass="btn btn-primary" />
+                        <asp:Button ID="BtnCarregar" runat="server" Text="Carregar" CssClass="btn btn-primary" CausesValidation="False" OnClick="BtnCarregar_Click"/>
                     </div>
                 </div>
                 <asp:RequiredFieldValidator

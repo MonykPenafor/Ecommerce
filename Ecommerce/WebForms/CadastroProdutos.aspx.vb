@@ -49,11 +49,15 @@ Public Class CadastroProdutos
             ClientScript.RegisterStartupScript(Me.GetType(), "MostrarToast", script)
 
         Else
-            Dim resultado As String = SalvarProduto(produto)
-            txtCodigo.Text = ""
-            txtDescricao.Text = ""
-            txtSaldoEstoque.Text = ""
-            txtPrecoUnitario.Text = ""
+            Dim produtoServico As ProdutoServico = New ProdutoServico
+            Dim resultado As String = produtoServico.SalvarProduto(produto)
+
+            If resultado = "Produto salvo com sucesso!" Then
+                txtCodigo.Text = ""
+                txtDescricao.Text = ""
+                txtSaldoEstoque.Text = ""
+                txtPrecoUnitario.Text = ""
+            End If
 
             Dim script As String = $"<script type='text/javascript'>showToast('{resultado}');</script>"
             ClientScript.RegisterStartupScript(Me.GetType(), "MostrarToast", script)
@@ -61,4 +65,14 @@ Public Class CadastroProdutos
         End If
     End Sub
 
+    Protected Sub BtnCarregar_Click(sender As Object, e As EventArgs)
+
+
+
+
+        Dim produtoServico As ProdutoServico = New ProdutoServico
+
+
+
+    End Sub
 End Class
