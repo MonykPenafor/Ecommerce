@@ -7,6 +7,7 @@ Public Class Produto
     Public Property PrecoUnitario As Decimal
     Public Property SaldoEstoque As Integer
 
+
     Public Function Validar() As List(Of String)
         Dim erros As New List(Of String)()
 
@@ -25,6 +26,5 @@ Public Class Produto
 
         Return erros
     End Function
-
 
 End Class

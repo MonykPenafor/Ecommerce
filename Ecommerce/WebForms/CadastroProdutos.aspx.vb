@@ -8,60 +8,57 @@ Public Class CadastroProdutos
     End Sub
 
     Protected Sub BtnInserir_Click(sender As Object, e As EventArgs)
+
+        If String.IsNullOrEmpty(txtCodigo.Text) OrElse String.IsNullOrEmpty(txtDescricao.Text) OrElse
+       String.IsNullOrEmpty(txtSaldoEstoque.Text) OrElse String.IsNullOrEmpty(txtPrecoUnitario.Text) Then
+
+            Dim script As String = "<script type='text/javascript'>showToast('Por favor, preencha todos os campos antes de salvar.');</script>"
+            ClientScript.RegisterStartupScript(Me.GetType(), "MostrarToast", script)
+            Return
+        End If
+
         Dim codigo As String = txtCodigo.Text
         Dim descricao As String = txtDescricao.Text
-        Dim saldoEstoque As Integer = txtSaldoEstoque.Text
-        Dim precoUnitario As Double = txtPrecoUnitario.Text
+        Dim saldoEstoque As Integer
+        Dim precoUnitario As Double
+
+        If Not Integer.TryParse(txtSaldoEstoque.Text, saldoEstoque) Then
+            Dim script As String = "<script type='text/javascript'>showToast('O campo Saldo em Estoque deve ser um número válido.');</script>"
+            ClientScript.RegisterStartupScript(Me.GetType(), "MostrarToast", script)
+            Return
+        End If
+
+        If Not Double.TryParse(txtPrecoUnitario.Text, precoUnitario) Then
+            Dim script As String = "<script type='text/javascript'>showToast('O campo Preço Unitário deve ser um número válido.');</script>"
+            ClientScript.RegisterStartupScript(Me.GetType(), "MostrarToast", script)
+            Return
+        End If
 
         Dim produto As New Produto With {
-            .IdProduto = Integer.Parse(txtCodigo.Text),
-            .Descricao = txtDescricao.Text,
-            .PrecoUnitario = Decimal.Parse(txtPrecoUnitario.Text),
-            .SaldoEstoque = Integer.Parse(txtSaldoEstoque.Text)
+            .IdProduto = codigo,
+            .Descricao = descricao,
+            .PrecoUnitario = precoUnitario,
+            .SaldoEstoque = saldoEstoque
         }
 
         Dim erros As List(Of String) = produto.Validar()
 
         If erros.Count > 0 Then
-            'MessageBox.Show(String.Join(Environment.NewLine, erros), "Erros de Validação")
+
+            Dim script As String = $"<script type='text/javascript'>showToast('{erros(0)}');</script>"
+            ClientScript.RegisterStartupScript(Me.GetType(), "MostrarToast", script)
+
         Else
-            SalvarProduto(produto)
+            Dim resultado As String = SalvarProduto(produto)
             txtCodigo.Text = ""
             txtDescricao.Text = ""
             txtSaldoEstoque.Text = ""
             txtPrecoUnitario.Text = ""
 
+            Dim script As String = $"<script type='text/javascript'>showToast('{resultado}');</script>"
+            ClientScript.RegisterStartupScript(Me.GetType(), "MostrarToast", script)
+
         End If
     End Sub
-
-
-
-    Private connectionString As String = ConfigurationManager.ConnectionStrings("EcommerceDB").ConnectionString
-
-    Public Function SalvarProduto(ByVal produto As Produto) As String
-        Try
-            Using connection As New SqlConnection(connectionString)
-                connection.Open()
-
-                Dim query As String = "INSERT INTO Produtos (idProduto, descricao, precoUnitario, saldoEstoque) " &
-                                  "VALUES (@IdProduto, @Descricao, @PrecoUnitario, @SaldoEstoque)"
-
-                Using command As New SqlCommand(query, connection)
-                    command.Parameters.AddWithValue("@IdProduto", produto.IdProduto)
-                    command.Parameters.AddWithValue("@Descricao", produto.Descricao)
-                    command.Parameters.AddWithValue("@PrecoUnitario", produto.PrecoUnitario)
-                    command.Parameters.AddWithValue("@SaldoEstoque", produto.SaldoEstoque)
-
-                    command.ExecuteNonQuery()
-                End Using
-            End Using
-
-            Return "Produto criado com sucesso!"
-
-        Catch ex As Exception
-            Return "Erro ao criar produto: " & ex.Message
-        End Try
-    End Function
-
 
 End Class

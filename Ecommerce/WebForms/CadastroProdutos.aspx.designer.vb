@@ -32,6 +32,15 @@ Partial Public Class CadastroProdutos
     Protected WithEvents BtnCarregar As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''rfvCodigo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rfvCodigo As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''txtDescricao control.
     '''</summary>
     '''<remarks>
@@ -39,6 +48,15 @@ Partial Public Class CadastroProdutos
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtDescricao As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''rfvDescricao control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rfvDescricao As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''txtSaldoEstoque control.
@@ -50,6 +68,15 @@ Partial Public Class CadastroProdutos
     Protected WithEvents txtSaldoEstoque As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''rfvSaldoEstoque control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rfvSaldoEstoque As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''txtPrecoUnitario control.
     '''</summary>
     '''<remarks>
@@ -57,6 +84,15 @@ Partial Public Class CadastroProdutos
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtPrecoUnitario As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''rfvPrecoUnitario control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rfvPrecoUnitario As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''BtnInserir control.
