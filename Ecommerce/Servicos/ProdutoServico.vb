@@ -36,4 +36,45 @@ Public Class ProdutoServico
         End Try
     End Function
 
+    Public Function ConsultarProdutoPeloCodigo(codigo As String) As Produto
+        Try
+            Using connection As New SqlConnection(connectionString)
+                connection.Open()
+
+                Dim query As String = "SELECT descricao, precoUnitario, saldoEstoque FROM Produtos WHERE idProduto = @IdProduto"
+
+                Using command As New SqlCommand(query, connection)
+                    command.Parameters.AddWithValue("@IdProduto", codigo)
+
+                    Using reader As SqlDataReader = command.ExecuteReader()
+                        If reader.HasRows Then
+                            reader.Read()
+                            Dim descricao As String = reader("descricao").ToString()
+                            Dim precoUnitario As Decimal = Convert.ToDecimal(reader("precoUnitario"))
+                            Dim saldoEstoque As Integer = Convert.ToInt32(reader("saldoEstoque"))
+
+                            Dim produto As New Produto With {
+                            .IdProduto = codigo,
+                            .Descricao = descricao,
+                            .PrecoUnitario = precoUnitario,
+                            .SaldoEstoque = saldoEstoque
+                        }
+
+                            Return produto
+                        Else
+                            Return Nothing
+                        End If
+                    End Using
+                End Using
+            End Using
+
+        Catch ex As SqlException
+            Throw New Exception("Erro ao consultar o produto: " & ex.Message)
+
+        Catch ex As Exception
+            Throw New Exception("Erro geral ao consultar o produto: " & ex.Message)
+        End Try
+    End Function
+
+
 End Class
