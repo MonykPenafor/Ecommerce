@@ -23,13 +23,13 @@ Partial Public Class CadastroProdutos
     Protected WithEvents txtCodigo As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''BtnCarregar control.
+    '''btnCarregar control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents BtnCarregar As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnCarregar As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''rfvCodigo control.
@@ -95,20 +95,20 @@ Partial Public Class CadastroProdutos
     Protected WithEvents rfvPrecoUnitario As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''BtnInserir control.
+    '''btnVoltar control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents BtnInserir As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnVoltar As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''BtnSalvarAlteracoes control.
+    '''btnSalvar control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents BtnSalvarAlteracoes As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnSalvar As Global.System.Web.UI.WebControls.Button
 End Class

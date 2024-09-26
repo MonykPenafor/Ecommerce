@@ -7,7 +7,7 @@ Public Class CadastroProdutos
 
     End Sub
 
-    Protected Sub BtnInserir_Click(sender As Object, e As EventArgs)
+    Protected Sub BtnSalvar_Click(sender As Object, e As EventArgs)
 
         If String.IsNullOrEmpty(txtCodigo.Text) OrElse String.IsNullOrEmpty(txtDescricao.Text) OrElse
        String.IsNullOrEmpty(txtSaldoEstoque.Text) OrElse String.IsNullOrEmpty(txtPrecoUnitario.Text) Then
@@ -50,29 +50,55 @@ Public Class CadastroProdutos
 
         Else
             Dim produtoServico As ProdutoServico = New ProdutoServico
-            Dim resultado As String = produtoServico.SalvarProduto(produto)
+            Dim p As Produto = produtoServico.ConsultarProdutoPeloCodigo(codigo)
+            Dim resultado As String
 
-            If resultado = "Produto salvo com sucesso!" Then
+            If p Is Nothing Then
+                resultado = produtoServico.SalvarProduto(produto)
+            Else
+                resultado = produtoServico.AlterarProduto(produto)
+            End If
+
+            If resultado = "Produto salvo com sucesso!" Or resultado = "Produto alterado com sucesso!" Then
                 txtCodigo.Text = ""
                 txtDescricao.Text = ""
                 txtSaldoEstoque.Text = ""
                 txtPrecoUnitario.Text = ""
             End If
 
-            Dim script As String = $"<script type='text/javascript'>showToast('{resultado}');</script>"
-            ClientScript.RegisterStartupScript(Me.GetType(), "MostrarToast", script)
+            Session("ToastMessage") = resultado
+            Response.Redirect("PaginaPrincipal.aspx")
 
         End If
     End Sub
 
     Protected Sub BtnCarregar_Click(sender As Object, e As EventArgs)
 
+        If Not String.IsNullOrEmpty(txtCodigo.Text) Then
+            Dim produtoServico As ProdutoServico = New ProdutoServico
+            Dim produto As Produto = produtoServico.ConsultarProdutoPeloCodigo(txtCodigo.Text)
 
-
-
-        Dim produtoServico As ProdutoServico = New ProdutoServico
-
-
+            If Not produto Is Nothing Then
+                txtDescricao.Text = produto.Descricao
+                txtPrecoUnitario.Text = produto.PrecoUnitario
+                txtSaldoEstoque.Text = produto.SaldoEstoque
+            Else
+                Dim script As String = "<script type='text/javascript'>showToast('Esse ID não está cadastrado!');</script>"
+                ClientScript.RegisterStartupScript(Me.GetType(), "MostrarToast", script)
+                txtDescricao.Text = ""
+                txtPrecoUnitario.Text = ""
+                txtSaldoEstoque.Text = ""
+            End If
+        Else
+            txtDescricao.Text = ""
+            txtPrecoUnitario.Text = ""
+            txtSaldoEstoque.Text = ""
+        End If
 
     End Sub
+
+    Protected Sub BtnVoltar_Click(sender As Object, e As EventArgs)
+        Response.Redirect("PaginaPrincipal.aspx")
+    End Sub
+
 End Class
