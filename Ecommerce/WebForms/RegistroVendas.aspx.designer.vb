@@ -23,13 +23,22 @@ Partial Public Class RegistroVendas
     Protected WithEvents txtCliente As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''DdlProdutos control.
+    '''ddlProdutos control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DdlProdutos As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents ddlProdutos As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''lblSaldoEstoque control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblSaldoEstoque As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''txtQuantidade control.
@@ -50,20 +59,65 @@ Partial Public Class RegistroVendas
     Protected WithEvents txtPrecoUnitario As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''BtnInserir control.
+    '''txtPrecoTotalProduto control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents BtnInserir As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents txtPrecoTotalProduto As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''BtnGerarVenda control.
+    '''btnInserir control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents BtnGerarVenda As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnInserir As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''UpdatePanel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
+
+    '''<summary>
+    '''pnlItensVenda control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlItensVenda As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''gvProdutos control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvProdutos As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''lblTotalVenda control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblTotalVenda As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btnGerarVenda control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnGerarVenda As Global.System.Web.UI.WebControls.Button
 End Class

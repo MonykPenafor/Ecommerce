@@ -211,7 +211,9 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
+    <Compile Include="Modelos\ItemVenda.vb" />
     <Compile Include="Modelos\Produto.vb" />
+    <Compile Include="Modelos\Venda.vb" />
     <Compile Include="Servicos\ProdutoServico.vb" />
     <Compile Include="WebForms\CadastroProdutos.aspx.designer.vb">
       <DependentUpon>CadastroProdutos.aspx</DependentUpon>

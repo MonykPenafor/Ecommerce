@@ -107,7 +107,7 @@ Public Class ProdutoServico
             Using connection As New SqlConnection(connectionString)
                 connection.Open()
 
-                Dim query As String = "SELECT idProduto, descricao, precoUnitario, saldoEstoque FROM Produtos"
+                Dim query As String = "SELECT idProduto, descricao, precoUnitario, saldoEstoque FROM Produtos ORDER BY descricao"
 
                 Using command As New SqlCommand(query, connection)
                     Using reader As SqlDataReader = command.ExecuteReader()

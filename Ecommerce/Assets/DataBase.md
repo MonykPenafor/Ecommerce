@@ -13,8 +13,8 @@ CREATE TABLE Vendas(
 );
 
  
-CREATE TABLE ItensVenda (
-    idItensVenda INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+CREATE TABLE ItensVendas (
+    idItemVenda INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
     idProduto INT NOT NULL, 
     idVenda INT NOT NULL,  
     quantidade INT NOT NULL,
