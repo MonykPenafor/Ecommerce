@@ -9,11 +9,13 @@ Public Class CadastroProdutos
 
     Protected Sub BtnSalvar_Click(sender As Object, e As EventArgs)
 
+
         If String.IsNullOrEmpty(txtCodigo.Text) OrElse String.IsNullOrEmpty(txtDescricao.Text) OrElse
        String.IsNullOrEmpty(txtSaldoEstoque.Text) OrElse String.IsNullOrEmpty(txtPrecoUnitario.Text) Then
 
-            Dim script As String = "<script type='text/javascript'>showToast('Por favor, preencha todos os campos antes de salvar.');</script>"
-            ClientScript.RegisterStartupScript(Me.GetType(), "MostrarToast", script)
+            Dim script As String = "showToast('Por favor, preencha todos os campos para salvar.');"
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "MostrarToast", script, True)
+
             Return
         End If
 
@@ -23,14 +25,18 @@ Public Class CadastroProdutos
         Dim precoUnitario As Double
 
         If Not Integer.TryParse(txtSaldoEstoque.Text, saldoEstoque) Then
-            Dim script As String = "<script type='text/javascript'>showToast('O campo Saldo em Estoque deve ser um número válido.');</script>"
-            ClientScript.RegisterStartupScript(Me.GetType(), "MostrarToast", script)
+
+            Dim script As String = "showToast('O campo Saldo em Estoque deve ser um número válido.');"
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "MostrarToast", script, True)
+
             Return
         End If
 
         If Not Double.TryParse(txtPrecoUnitario.Text, precoUnitario) Then
-            Dim script As String = "<script type='text/javascript'>showToast('O campo Preço Unitário deve ser um número válido.');</script>"
-            ClientScript.RegisterStartupScript(Me.GetType(), "MostrarToast", script)
+
+            Dim script As String = "showToast('O campo Preço Unitário deve ser um número válido.');"
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "MostrarToast", script, True)
+
             Return
         End If
 
@@ -45,8 +51,8 @@ Public Class CadastroProdutos
 
         If erros.Count > 0 Then
 
-            Dim script As String = $"<script type='text/javascript'>showToast('{erros(0)}');</script>"
-            ClientScript.RegisterStartupScript(Me.GetType(), "MostrarToast", script)
+            Dim script As String = $"showToast('{erros(0)}');"
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "MostrarToast", script, True)
 
         Else
             Dim produtoServico As ProdutoServico = New ProdutoServico
@@ -56,6 +62,10 @@ Public Class CadastroProdutos
             If p Is Nothing Then
                 resultado = produtoServico.SalvarProduto(produto)
             Else
+
+                Dim script As String = "alert('Esta é uma mensagem de alerta!');"
+                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "MostrarAlerta", script, True)
+
                 resultado = produtoServico.AlterarProduto(produto)
             End If
 
@@ -83,8 +93,9 @@ Public Class CadastroProdutos
                 txtPrecoUnitario.Text = produto.PrecoUnitario
                 txtSaldoEstoque.Text = produto.SaldoEstoque
             Else
-                Dim script As String = "<script type='text/javascript'>showToast('Esse ID não está cadastrado!');</script>"
-                ClientScript.RegisterStartupScript(Me.GetType(), "MostrarToast", script)
+
+                Dim script As String = "showToast('Esse ID não está cadastrado!');"
+                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "MostrarToast", script, True)
                 txtDescricao.Text = ""
                 txtPrecoUnitario.Text = ""
                 txtSaldoEstoque.Text = ""

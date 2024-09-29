@@ -23,6 +23,15 @@ Partial Public Class RegistroVendas
     Protected WithEvents txtCliente As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''rfvNomeCliente control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rfvNomeCliente As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''ddlProdutos control.
     '''</summary>
     '''<remarks>
@@ -102,6 +111,15 @@ Partial Public Class RegistroVendas
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvProdutos As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''lblTotalVendaLabel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblTotalVendaLabel As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lblTotalVenda control.

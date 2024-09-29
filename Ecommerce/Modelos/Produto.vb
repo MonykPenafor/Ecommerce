@@ -7,7 +7,6 @@ Public Class Produto
     Public Property PrecoUnitario As Decimal
     Public Property SaldoEstoque As Integer
 
-
     Public Function Validar() As List(Of String)
         Dim erros As New List(Of String)()
 
@@ -17,10 +16,10 @@ Public Class Produto
         If String.IsNullOrWhiteSpace(Descricao) Then
             erros.Add("A descrição do produto é obrigatória.")
         End If
-        If PrecoUnitario < 0 Then
-            erros.Add("O preço unitário não pode ser negativo.")
+        If PrecoUnitario <= 0 Then
+            erros.Add("O preço unitário deve ser maior que zero.")
         End If
-        If SaldoEstoque < 0 Then
+        If SaldoEstoque <= 0 Then
             erros.Add("O saldo de estoque não pode ser negativo.")
         End If
 

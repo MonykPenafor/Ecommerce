@@ -215,6 +215,7 @@
     <Compile Include="Modelos\Produto.vb" />
     <Compile Include="Modelos\Venda.vb" />
     <Compile Include="Servicos\ProdutoServico.vb" />
+    <Compile Include="Servicos\VendaServico.vb" />
     <Compile Include="WebForms\CadastroProdutos.aspx.designer.vb">
       <DependentUpon>CadastroProdutos.aspx</DependentUpon>
     </Compile>
@@ -256,7 +257,7 @@
     </Compile>
     <Compile Include="WebForms\RegistroVendas.aspx.vb">
       <DependentUpon>RegistroVendas.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Master.designer.vb">
       <DependentUpon>Site.Master</DependentUpon>

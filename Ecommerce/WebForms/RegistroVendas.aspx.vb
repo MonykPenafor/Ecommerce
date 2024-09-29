@@ -4,6 +4,18 @@ Imports Microsoft.Ajax.Utilities
 Public Class RegistroVendas
     Inherits System.Web.UI.Page
 
+    Private Property ItensVenda As List(Of ItemVenda)
+        Get
+            If Session("ItensVenda") Is Nothing Then
+                Session("ItensVenda") = New List(Of ItemVenda)()
+            End If
+            Return CType(Session("ItensVenda"), List(Of ItemVenda))
+        End Get
+        Set(value As List(Of ItemVenda))
+            Session("ItensVenda") = value
+        End Set
+    End Property
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
             PreencherDropDown()
@@ -11,9 +23,10 @@ Public Class RegistroVendas
             If Session("ItensVenda") IsNot Nothing Then
                 Session.Remove("ItensVenda")
             End If
-
-            pnlItensVenda.Visible = False
         End If
+
+        AtualizarItensVenda()
+
     End Sub
 
     Private Sub PreencherDropDown()
@@ -24,94 +37,129 @@ Public Class RegistroVendas
         ddlProdutos.DataTextField = "Descricao"
         ddlProdutos.DataValueField = "IdProduto"
         ddlProdutos.DataBind()
-    End Sub
 
+        ddlProdutos.Items.Insert(0, New ListItem("Selecione um produto", 0))
+    End Sub
 
     Protected Sub ddlProdutos_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs)
         Dim produtoId As String = ddlProdutos.SelectedValue
+
+        If produtoId = 0 Then
+            txtPrecoUnitario.Text = ""
+            lblSaldoEstoque.InnerText = ""
+        End If
 
         Dim produtoServico As New ProdutoServico()
         Dim produto As Produto = produtoServico.ConsultarProdutoPeloCodigo(produtoId)
 
         If produto IsNot Nothing Then
+            txtQuantidade.Text = ""
             txtPrecoUnitario.Text = produto.PrecoUnitario.ToString()
             lblSaldoEstoque.InnerText = "Saldo em Estoque: " + produto.SaldoEstoque.ToString()
 
             'If Not txtQuantidade.Text.IsNullOrWhiteSpace Then
-            '    Dim total As Decimal = produtoDetalhes.PrecoUnitario * Int32.Parse(txtQuantidade.Text)
+            '    Dim total As Decimal = produto.PrecoUnitario * Int32.Parse(txtQuantidade.Text)
             '    txtPrecoTotalProduto.Text = total.ToString()
             'End If
-
         End If
-    End Sub
-
-
-
-
-
-    Protected Sub txtQuantidade_TextChanged(ByVal sender As Object, ByVal e As EventArgs)
-        Dim produtoId As String = ddlProdutos.SelectedValue
-
     End Sub
 
     Protected Sub BtnInserir_Click(sender As Object, e As EventArgs)
 
-        pnlItensVenda.Visible = True
+        Dim idProduto As Integer = ddlProdutos.SelectedValue
 
-        Dim itemVenda As New ItemVenda With {
-            .IdProduto = ddlProdutos.SelectedValue,
-            .DescricaoProduto = ddlProdutos.SelectedItem.Text,
-            .PrecoUnitario = Decimal.Parse(txtPrecoUnitario.Text),
-            .Quantidade = Int32.Parse(txtQuantidade.Text),
-            .ValorTotalItem = Decimal.Parse(txtPrecoUnitario.Text) * Int32.Parse(txtQuantidade.Text)
-        }
+        If Not idProduto = 0 Then
 
-        Dim itensVenda As List(Of ItemVenda)
+            If Not String.IsNullOrEmpty(txtQuantidade.Text) Then
 
-        If Session("ItensVenda") Is Nothing Then
-            itensVenda = New List(Of ItemVenda)()
+                Dim produtoExistente As ItemVenda = ItensVenda.FirstOrDefault(Function(item) item.IdProduto = idProduto)
+
+                If produtoExistente IsNot Nothing Then
+                    Dim script As String = "showToast('Este produto já foi inserido na venda.');"
+                    ScriptManager.RegisterStartupScript(Me, Me.GetType(), "MostrarToast", script, True)
+                    Return
+                End If
+
+                Dim itemVenda As New ItemVenda With {
+                .IdProduto = idProduto,
+                .DescricaoProduto = ddlProdutos.SelectedItem.Text,
+                .PrecoUnitario = Decimal.Parse(txtPrecoUnitario.Text),
+                .Quantidade = Int32.Parse(txtQuantidade.Text),
+                .ValorTotalItem = Decimal.Parse(txtPrecoUnitario.Text) * Int32.Parse(txtQuantidade.Text)
+                }
+
+                Dim erros As List(Of String) = itemVenda.Validar()
+
+                If erros.Count > 0 Then
+                    Dim script As String = $"showToast('{erros(0)}');"
+                    ScriptManager.RegisterStartupScript(Me, Me.GetType(), "MostrarToast", script, True)
+                Else
+                    ItensVenda.Add(itemVenda)
+
+                    gvProdutos.DataSource = ItensVenda
+                    gvProdutos.DataBind()
+
+                    AtualizarTotalVenda()
+
+                    pnlItensVenda.Visible = True
+                End If
+            Else
+
+                Dim script As String = "showToast('Informe a quantidade!');"
+                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "MostrarToast", script, True)
+            End If
         Else
-            itensVenda = CType(Session("ItensVenda"), List(Of ItemVenda))
+            Dim script As String = "showToast('Selecione um produto para inserir!');"
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "MostrarToast", script, True)
         End If
 
-        itensVenda.Add(itemVenda)
-
-        Session("ItensVenda") = itensVenda
-
-        gvProdutos.DataSource = itensVenda
-        gvProdutos.DataBind()
     End Sub
 
+    Private Sub AtualizarTotalVenda()
+        Dim total As Decimal = ItensVenda.Sum(Function(item) item.ValorTotalItem)
+        lblTotalVenda.Text = total
+    End Sub
 
-
-
-    Private totalVenda As Decimal = 0
-
-    Protected Sub gvProdutos_RowDataBound(sender As Object, e As GridViewRowEventArgs)
-        ' Verifica se a linha é de dados
-        If e.Row.RowType = DataControlRowType.DataRow Then
-            ' Obtém o valor da coluna 'ValorTotalItem' e adiciona ao total
-            Dim valorTotalItem As Decimal = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "ValorTotalItem"))
-            totalVenda += valorTotalItem
-        End If
-
-        ' Se for o rodapé, mostra o total
-        If e.Row.RowType = DataControlRowType.Footer Then
-            e.Row.Cells(3).Text = "Total:"
-            e.Row.Cells(4).Text = totalVenda.ToString("C2") ' Formato de moeda
-            e.Row.Cells(4).HorizontalAlign = HorizontalAlign.Right
+    Private Sub AtualizarItensVenda()
+        If ItensVenda IsNot Nothing AndAlso ItensVenda.Count > 0 Then
+            gvProdutos.DataSource = ItensVenda
+            gvProdutos.DataBind()
+            pnlItensVenda.Visible = True
+        Else
+            pnlItensVenda.Visible = False
         End If
     End Sub
 
+    Protected Sub BtnGerarVenda_Click(sender As Object, e As EventArgs)
 
+        If Not String.IsNullOrEmpty(txtCliente.Text) Then
+            If Not ItensVenda.Count = 0 Then
 
+                Dim vendaServico As VendaServico = New VendaServico()
 
+                Dim venda As New Venda With {
+                .NomeCliente = txtCliente.Text,
+                .ValorTotal = Decimal.Parse(lblTotalVenda.Text),
+                .ItensVenda = ItensVenda
+                }
 
+                Dim resultado As String = vendaServico.SalvarVenda(venda)
 
+                If resultado = "Venda e itens salvos com sucesso!" Then
+                    Session("ToastMessage") = resultado
+                    Response.Redirect("PaginaPrincipal.aspx")
+                End If
 
-
-
-
-
+                Dim script As String = $"showToast('{resultado}');"
+                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "MostrarToast", script, True)
+            Else
+                Dim script As String = "showToast('Nenhum item foi adicionado à venda!');"
+                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "MostrarToast", script, True)
+            End If
+        Else
+            Dim script As String = "showToast('Nome do cliente é obrigatório!');"
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "MostrarToast", script, True)
+        End If
+    End Sub
 
 End Class

@@ -12,4 +12,22 @@ Option Explicit On
 
 
 Partial Public Class VisualizarVendas
+
+    '''<summary>
+    '''gvVendas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvVendas As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''lblTotalVendas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblTotalVendas As Global.System.Web.UI.WebControls.Label
 End Class

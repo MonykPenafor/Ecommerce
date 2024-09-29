@@ -37,7 +37,7 @@
 
             <div class="form-group col-2">
                 <label for="txtSaldoEstoque">Saldo em Estoque</label>
-                <asp:TextBox ID="txtSaldoEstoque" runat="server" CssClass="form-control no-spin" MaxLength="5" placeholder="Saldo em Estoque" TextMode="Number"></asp:TextBox>
+                <asp:TextBox ID="txtSaldoEstoque" runat="server" CssClass="form-control no-spin" MaxLength="5" placeholder="Saldo em Estoque" TextMode="Number" oninput="formatarInteiro(this)"></asp:TextBox>
                 <asp:RequiredFieldValidator
                     ID="rfvSaldoEstoque"
                     runat="server"

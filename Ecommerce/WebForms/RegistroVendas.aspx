@@ -10,6 +10,13 @@
                 <div class="form-group">
                     <label for="txtCliente">Cliente</label>
                     <asp:TextBox ID="txtCliente" runat="server" CssClass="form-control" placeholder="Nome"></asp:TextBox>
+                    <asp:RequiredFieldValidator
+                        ID="rfvNomeCliente"
+                        runat="server"
+                        ControlToValidate="txtCliente"
+                        ErrorMessage="O nome do cliente é obrigatório!"
+                        CssClass="text-danger"
+                        Display="Static" />
                 </div>
             </div>
         </div>
@@ -30,7 +37,7 @@
                 <div class="col-1">
                     <div class="form-group">
                         <label for="txtQuantidade">Qtde.</label>
-                        <asp:TextBox ID="txtQuantidade" runat="server" CssClass="form-control" TextMode="Number" AutoPostBack="True" OnTextChanged="txtQuantidade_TextChanged" placeholder="-"></asp:TextBox>
+                        <asp:TextBox ID="txtQuantidade" runat="server" CssClass="form-control" TextMode="Number" placeholder="-" oninput="formatarInteiro(this)"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-2">
@@ -48,7 +55,7 @@
                 <div class="col-1">
                     <div class="form-group">
                         <label for="btnInserir" style="color: transparent">---</label>
-                        <asp:Button ID="btnInserir" runat="server" Text="Inserir" CssClass="btn btn-primary" OnClick="BtnInserir_Click" />
+                        <asp:Button ID="btnInserir" runat="server" Text="Inserir" CssClass="btn btn-primary" CausesValidation="False" OnClick="BtnInserir_Click" />
                     </div>
                 </div>
 
@@ -58,23 +65,40 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <asp:Panel ID="pnlItensVenda" runat="server" Style="padding: 20px;" CssClass="bg-light" Visible="false">
-                    <asp:GridView ID="gvProdutos" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered mb-3" ShowFooter="True" OnRowDataBound="gvProdutos_RowDataBound">
+                    <asp:GridView ID="gvProdutos" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered mb-3">
                         <Columns>
-                            <asp:BoundField DataField="IdProduto" HeaderText="ID" />
-                            <asp:BoundField DataField="DescricaoProduto" HeaderText="Descrição" />
-                            <asp:BoundField DataField="Quantidade" HeaderText="Quantidade" />
-                            <asp:BoundField DataField="PrecoUnitario" HeaderText="Preço Unitário" />
-                            <asp:BoundField DataField="ValorTotalItem" HeaderText="Total" />
+                            <asp:BoundField DataField="IdProduto" HeaderText="ID">
+                                <ItemStyle Width="10%" />
+                                <HeaderStyle Width="10%" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="DescricaoProduto" HeaderText="Descrição">
+                                <ItemStyle Width="40%" />
+                                <HeaderStyle Width="40%" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="Quantidade" HeaderText="Quantidade">
+                                <ItemStyle Width="10%" />
+                                <HeaderStyle Width="10%" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="PrecoUnitario" HeaderText="Preço Unitário">
+                                <ItemStyle Width="10%" />
+                                <HeaderStyle Width="10%" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="ValorTotalItem" HeaderText="Valor Total">
+                                <ItemStyle Width="10%" />
+                                <HeaderStyle Width="10%" />
+                            </asp:BoundField>
                         </Columns>
-                        <FooterStyle CssClass="font-weight-bold" />
                     </asp:GridView>
 
-                    <div class="col">
-                        <asp:Label ID="lblTotalVenda" runat="server" CssClass="font-weight-bold" Text="Total da Venda: R$ 0,00" />
-                        
-                        <br />
+                    <div class="col text-end ">
+                        <div class="row mb-3 " style="display: inline-block;">
+                            <asp:Label ID="lblTotalVendaLabel" runat="server" CssClass="font-weight-bold" Text="Total da Venda: R$ "/>
+                            <asp:Label ID="lblTotalVenda" runat="server" CssClass="font-weight-bold" Text="0,00" />
+                        </div>
 
-                        <asp:Button ID="btnGerarVenda" runat="server" Text="Gerar Venda" CssClass="btn btn-primary" />
+                        <div class="row-1">
+                            <asp:Button ID="btnGerarVenda" runat="server" Text="Gerar Venda" CssClass="btn btn-primary" OnClick="BtnGerarVenda_Click" />
+                        </div>
                     </div>
 
                 </asp:Panel>
