@@ -23,3 +23,67 @@ CREATE TABLE ItensVendas (
     CONSTRAINT FK_ItensVenda_Produtos FOREIGN KEY (idProduto) REFERENCES Produtos(idProduto),
     CONSTRAINT FK_ItensVenda_Vendas FOREIGN KEY (idVenda) REFERENCES Vendas(idVenda)
 );
+
+
+
+
+
+CREATE PROCEDURE GetVendaDetalhada
+    @idVenda INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        v.idVenda,
+        v.nomeCliente,
+        v.valorTotal AS ValorTotalVenda,
+        v.dataVenda,
+        iv.idItemVenda,
+        iv.quantidade,
+        iv.precoUnitario,
+        iv.valorTotalItem,
+        p.descricao AS DescricaoProduto
+    FROM 
+        Vendas v
+    INNER JOIN 
+        ItensVendas iv ON v.idVenda = iv.idVenda
+    INNER JOIN 
+        Produtos p ON iv.idProduto = p.idProduto
+    WHERE 
+        v.idVenda = @idVenda;
+END;
+
+
+
+
+
+
+CREATE PROCEDURE GetVendaDetalhada
+    @idVenda INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        v.idVenda,
+        v.nomeCliente,
+        v.valorTotal AS ValorTotalVenda,
+        v.dataVenda,
+        iv.idItensVenda,
+        iv.quantidade,
+        iv.precoUnitario,
+        iv.valorTotalItem,
+        p.descricao AS DescricaoProduto
+    FROM 
+        Vendas v
+    INNER JOIN 
+        ItensVenda iv ON v.idVenda = iv.idVenda
+    INNER JOIN 
+        Produtos p ON iv.idProduto = p.idProduto
+    WHERE 
+        v.idVenda = @idVenda;
+END;
+
+
+EXEC GetVendaDetalhada @idVenda = 4;  -- Substitua 1 pelo ID da venda que deseja consultar

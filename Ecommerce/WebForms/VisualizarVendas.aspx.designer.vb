@@ -30,4 +30,13 @@ Partial Public Class VisualizarVendas
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblTotalVendas As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblDetalhesVenda control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDetalhesVenda As Global.System.Web.UI.WebControls.Label
 End Class

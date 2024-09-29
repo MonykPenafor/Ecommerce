@@ -23,7 +23,6 @@ function formatarMoeda(input) {
     input.value = valor;
 }
 
-
 function formatarInteiro(input) {
     var valor = input.value;
 
@@ -31,6 +30,19 @@ function formatarInteiro(input) {
 
     input.value = valor;
 }
+
+function closeModal() {
+    $('#modalDetalhes').modal('hide');
+}
+
+
+
+
+
+
+
+
+
 
 
 function atualizarPrecoUnitario(id) {

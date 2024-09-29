@@ -94,39 +94,39 @@ Public Class VendaServico
         End Try
     End Function
 
-    'Public Function ConsultarTodasAsVendas() As List(Of Venda)
-    '    Try
-    '        Using connection As New SqlConnection(connectionString)
-    '            connection.Open()
+    Public Function ConsultarVendas() As List(Of Venda)
+        Try
+            Using connection As New SqlConnection(connectionString)
+                connection.Open()
 
-    '            Dim query As String = "SELECT idProduto, descricao, precoUnitario, saldoEstoque FROM Produtos ORDER BY descricao"
+                Dim query As String = "SELECT idVenda, nomeCliente, valorTotal, dataVenda FROM Vendas"
 
-    '            Using command As New SqlCommand(query, connection)
-    '                Using reader As SqlDataReader = command.ExecuteReader()
-    '                    Dim vendas As New List(Of Venda)()
+                Using command As New SqlCommand(query, connection)
+                    Using reader As SqlDataReader = command.ExecuteReader()
+                        Dim vendas As New List(Of Venda)()
 
-    '                    While reader.Read()
-    '                        Dim venda As New Venda With {
-    '                        .IdProduto = Convert.ToInt32(reader("idProduto")),
-    '                        .Descricao = reader("descricao").ToString(),
-    '                        .PrecoUnitario = Convert.ToDecimal(reader("precoUnitario")),
-    '                        .SaldoEstoque = Convert.ToInt32(reader("saldoEstoque"))
-    '                    }
+                        While reader.Read()
+                            Dim venda As New Venda With {
+                            .IdVenda = Convert.ToInt32(reader("idVenda")),
+                            .NomeCliente = (reader("nomeCliente")).ToString(),
+                            .ValorTotal = Convert.ToDecimal(reader("valorTotal")),
+                            .DataVenda = Convert.ToDateTime(reader("dataVenda"))
+                        }
 
-    '                        produtos.Add(produto)
-    '                    End While
+                            vendas.Add(venda)
+                        End While
 
-    '                    Return vendas
-    '                End Using
-    '            End Using
-    '        End Using
+                        Return vendas
+                    End Using
+                End Using
+            End Using
 
-    '    Catch ex As SqlException
-    '        Throw New Exception("Erro ao consultar as vendas: " & ex.Message)
+        Catch ex As SqlException
+            Throw New Exception("Erro ao consultar as vendas: " & ex.Message)
 
-    '    Catch ex As Exception
-    '        Throw New Exception("Erro ao consultar as vendas: " & ex.Message)
-    '    End Try
-    'End Function
+        Catch ex As Exception
+            Throw New Exception("Erro ao consultar as vendas: " & ex.Message)
+        End Try
+    End Function
 
 End Class
