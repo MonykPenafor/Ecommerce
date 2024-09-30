@@ -25,9 +25,6 @@ CREATE TABLE ItensVendas (
 );
 
 
-
-
-
 CREATE PROCEDURE GetVendaDetalhada
     @idVenda INT
 AS
@@ -36,14 +33,12 @@ BEGIN
 
     SELECT 
         v.idVenda,
-        v.nomeCliente,
-        v.valorTotal AS ValorTotalVenda,
-        v.dataVenda,
         iv.idItemVenda,
         iv.quantidade,
         iv.precoUnitario,
         iv.valorTotalItem,
-        p.descricao AS DescricaoProduto
+        p.descricao,
+		p.idProduto
     FROM 
         Vendas v
     INNER JOIN 
@@ -55,32 +50,19 @@ BEGIN
 END;
 
 
+EXEC GetVendaDetalhada @idVenda = 4; 
 
 
-
-CREATE PROCEDURE GetVendaDetalhada
-    @idVenda INT
+CREATE TRIGGER trg_AjustarEstoque
+ON ItensVendas
+AFTER INSERT
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    SELECT 
-        v.idVenda,
-        iv.idItensVenda,
-        iv.quantidade,
-        iv.precoUnitario,
-        iv.valorTotalItem,
-        p.descricao,
-		p.idProduto
-    FROM 
-        Vendas v
-    INNER JOIN 
-        ItensVenda iv ON v.idVenda = iv.idVenda
-    INNER JOIN 
-        Produtos p ON iv.idProduto = p.idProduto
-    WHERE 
-        v.idVenda = @idVenda;
+    -- Atualizar o saldo de estoque do produto
+    UPDATE Produtos
+    SET saldoEstoque = saldoEstoque - i.quantidade
+    FROM Produtos p
+    INNER JOIN Inserted i ON p.idProduto = i.idProduto
 END;
-
-
-EXEC GetVendaDetalhada @idVenda = 4; 

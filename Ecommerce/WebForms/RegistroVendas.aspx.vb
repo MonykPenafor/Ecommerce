@@ -92,6 +92,7 @@ Public Class RegistroVendas
                     gvProdutos.DataBind()
                     AtualizarTotalVenda()
                     pnlItensVenda.Visible = True
+                    ddlProdutos.SelectedValue = 0
                 End If
             Else
                 Toast.MostrarMensagem(Me, "Informe a quantidade!")
