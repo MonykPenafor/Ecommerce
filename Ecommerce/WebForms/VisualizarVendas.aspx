@@ -60,7 +60,7 @@
                         <p><strong>Data da Venda:</strong>
                             <asp:Label ID="lblDataVenda" runat="server"></asp:Label></p>
                         <p><strong>Valor Total da Venda:</strong>
-                            <asp:Label ID="lblValorTotalVenda" runat="server"></asp:Label></p>
+                            <asp:Label ID="lblValorTotalVenda" CssClass="dinheiro" runat="server"></asp:Label></p>
 
                         <!-- GridView para exibir os itens da venda -->
                         <asp:GridView ID="gvItensVenda" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered">

@@ -16,11 +16,14 @@ Public Class Produto
         If String.IsNullOrWhiteSpace(Descricao) Then
             erros.Add("A descrição do produto é obrigatória.")
         End If
+        If Descricao.Length > 100 Then
+            erros.Add("A descrição do produto excede o limite de caracteres.")
+        End If
         If PrecoUnitario <= 0 Then
             erros.Add("O preço unitário deve ser maior que zero.")
         End If
         If SaldoEstoque <= 0 Then
-            erros.Add("O saldo de estoque não pode ser negativo.")
+            erros.Add("O saldo de estoque deve ser maior que zero.")
         End If
 
         Return erros

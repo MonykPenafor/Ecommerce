@@ -60,7 +60,6 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- Atualizar o saldo de estoque do produto
     UPDATE Produtos
     SET saldoEstoque = saldoEstoque - i.quantidade
     FROM Produtos p

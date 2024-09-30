@@ -29,6 +29,7 @@ Public Class RegistroVendas
         End If
 
         AtualizarItensVenda()
+        AtualizarTotalVenda()
 
     End Sub
 
@@ -41,14 +42,18 @@ Public Class RegistroVendas
         ddlProdutos.DataBind()
 
         ddlProdutos.Items.Insert(0, New ListItem("Selecione um produto", 0))
+
     End Sub
 
     Protected Sub ddlProdutos_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs)
-        Dim produtoId As String = ddlProdutos.SelectedValue
 
-        If produtoId = 0 Then
+        Dim produtoId As Integer = ddlProdutos.SelectedValue
+
+        If produtoId = "0" Then
             txtPrecoUnitario.Text = ""
             lblSaldoEstoque.InnerText = ""
+            txtQuantidade.Text = ""
+            Return
         End If
 
         Dim produto As Produto = ProdutoServico.ConsultarProdutoPeloCodigo(produtoId)
@@ -62,7 +67,7 @@ Public Class RegistroVendas
 
     Protected Sub BtnInserir_Click(sender As Object, e As EventArgs)
 
-        Dim idProduto As Integer = ddlProdutos.SelectedValue
+        Dim idProduto As Integer = ddlProdutos.SelectedIndex
 
         If Not idProduto = 0 Then
             If Not String.IsNullOrEmpty(txtQuantidade.Text) Then
@@ -87,12 +92,14 @@ Public Class RegistroVendas
                 If erros.Count > 0 Then
                     Toast.MostrarMensagem(Me, erros(0))
                 Else
+
+                    ScriptManager.RegisterStartupScript(Me, Me.GetType(), "limparCampos", "limparCamposDadosDaVenda();", True)
+
                     ItensVenda.Add(itemVenda)
                     gvProdutos.DataSource = ItensVenda
                     gvProdutos.DataBind()
                     AtualizarTotalVenda()
                     pnlItensVenda.Visible = True
-                    ddlProdutos.SelectedValue = 0
                 End If
             Else
                 Toast.MostrarMensagem(Me, "Informe a quantidade!")
@@ -105,7 +112,7 @@ Public Class RegistroVendas
 
     Private Sub AtualizarTotalVenda()
         Dim total As Decimal = ItensVenda.Sum(Function(item) item.ValorTotalItem)
-        lblTotalVenda.Text = $"Total da Venda: R$ {total}"
+        lblTotalVenda.Text = $"Total da Venda: R$ {total:N2}"
     End Sub
 
     Private Sub AtualizarItensVenda()
@@ -150,5 +157,18 @@ Public Class RegistroVendas
             Toast.MostrarMensagem(Me, "Nome do cliente é obrigatório!")
         End If
     End Sub
+
+    Protected Sub gvProdutos_RowDeleting(sender As Object, e As GridViewDeleteEventArgs) Handles gvProdutos.RowDeleting
+        Dim index As Integer = e.RowIndex
+        If index >= 0 AndAlso index < ItensVenda.Count Then
+
+            ItensVenda.RemoveAt(index)
+
+            gvProdutos.DataSource = ItensVenda
+            gvProdutos.DataBind()
+            AtualizarTotalVenda()
+        End If
+    End Sub
+
 
 End Class

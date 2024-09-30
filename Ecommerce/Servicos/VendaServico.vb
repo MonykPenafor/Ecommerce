@@ -25,7 +25,7 @@ Public Class VendaServico
                     End Using
 
                     For Each item As ItemVenda In venda.ItensVenda
-                        Dim queryItem As String = "INSERT INTO ItensVenda (idProduto, idVenda, quantidade, valorTotalItem, precoUnitario)" &
+                        Dim queryItem As String = "INSERT INTO ItensVendas (idProduto, idVenda, quantidade, valorTotalItem, precoUnitario)" &
                                               "VALUES (@IdProduto, @IdVenda, @Quantidade, @ValorTotalItem, @PrecoUnitario)"
 
                         Using commandItem As New SqlCommand(queryItem, connection, transaction)
@@ -143,7 +143,7 @@ Public Class VendaServico
                         While reader.Read()
                             Dim item As New ItemVenda()
 
-                            item.IdItemVenda = Convert.ToInt32(reader("idItensVenda"))
+                            item.IdItemVenda = Convert.ToInt32(reader("idItemVenda"))
                             item.IdProduto = Convert.ToInt32(reader("idProduto"))
                             item.Quantidade = Convert.ToInt32(reader("quantidade"))
                             item.PrecoUnitario = Convert.ToDecimal(reader("precoUnitario"))

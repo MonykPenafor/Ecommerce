@@ -46,12 +46,7 @@
                         <asp:TextBox ID="txtPrecoUnitario" runat="server" CssClass="form-control" Enabled="False" placeholder="-"></asp:TextBox>
                     </div>
                 </div>
-                <%--                <div class="col-2">
-                    <div class="form-group">
-                        <label for="txtPrecoTotalProduto">Total</label>
-                        <asp:TextBox ID="txtPrecoTotalProduto" runat="server" CssClass="form-control" Enabled="False" placeholder="-"></asp:TextBox>
-                    </div>
-                </div>--%>
+
                 <div class="col-1">
                     <div class="form-group">
                         <label for="btnInserir" style="color: transparent">---</label>
@@ -65,7 +60,7 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <asp:Panel ID="pnlItensVenda" runat="server" Style="padding: 20px;" CssClass="bg-light" Visible="false">
-                    <asp:GridView ID="gvProdutos" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered mb-3">
+                    <asp:GridView ID="gvProdutos" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered mb-3" OnRowDeleting="gvProdutos_RowDeleting">
                         <Columns>
                             <asp:BoundField DataField="IdProduto" HeaderText="ID">
                                 <ItemStyle Width="10%" />
@@ -79,15 +74,23 @@
                                 <ItemStyle Width="10%" />
                                 <HeaderStyle Width="10%" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="PrecoUnitario" HeaderText="Preço Unitário" DataFormatString="{0:C}" >
+                            <asp:BoundField DataField="PrecoUnitario" HeaderText="Preço Unitário" DataFormatString="{0:C}">
                                 <ItemStyle Width="10%" />
                                 <HeaderStyle Width="10%" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="ValorTotalItem" HeaderText="Valor Total" DataFormatString="{0:C}" >
+                            <asp:BoundField DataField="ValorTotalItem" HeaderText="Valor Total" DataFormatString="{0:C}">
                                 <ItemStyle Width="10%" />
                                 <HeaderStyle Width="10%" />
                             </asp:BoundField>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="btnExcluir" runat="server" Text="Excluir" CommandName="Delete" CssClass="btn btn-danger" CausesValidation="False" />
+                                </ItemTemplate>
+                                <ItemStyle Width="10%" />
+                                <HeaderStyle Width="10%" />
+                            </asp:TemplateField>
                         </Columns>
+
                     </asp:GridView>
 
                     <div class="col text-end ">
@@ -107,5 +110,21 @@
             </Triggers>
         </asp:UpdatePanel>
 
+        <script type="text/javascript">
+            function limparCamposDadosDaVenda() {
+                console.log("IDs dos campos:");
+                console.log("Quantidade: " + '<%= txtQuantidade.ClientID %>');
+            console.log("Preço Unitário: " + '<%= txtPrecoUnitario.ClientID %>');
+            console.log("Produto: " + '<%= ddlProdutos.ClientID %>');
+            console.log("Saldo em Estoque: " + '<%= lblSaldoEstoque.ClientID %>');
+
+            $('#<%= txtQuantidade.ClientID %>').val('');
+            $('#<%= txtPrecoUnitario.ClientID %>').val('');
+            $('#<%= ddlProdutos.ClientID %>').prop('selectedIndex', 0);
+            $('#<%= lblSaldoEstoque.ClientID %>').text('');
+            }
+        </script>
     </main>
+
+
 </asp:Content>

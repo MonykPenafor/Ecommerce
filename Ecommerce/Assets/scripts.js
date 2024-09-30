@@ -6,24 +6,7 @@ function showToast(message) {
     setTimeout(function () { toast.className = toast.className.replace("show", ""); }, 3000);
 }
 
-function formatarMoeda(input) {
-    var valor = input.value;
-
-    valor = valor.replace(/[^0-9,]/g, '');
-
-    var partes = valor.split(',');
-        if (partes.length > 2) {
-        valor = partes[0] + ',' + partes[1];
-        }
-
-        if (partes[1] && partes[1].length > 2) {
-        valor = partes[0] + ',' + partes[1].substring(0, 2);
-        }
-
-    input.value = valor;
-}
-
-function formatarInteiro(input) {
+function RestringirASomenteNumeros(input) {
     var valor = input.value;
 
     valor = valor.replace(/[^0-9]/g, '');
@@ -34,4 +17,3 @@ function formatarInteiro(input) {
 function closeModal() {
     $('#modalDetalhes').modal('hide');
 }
-

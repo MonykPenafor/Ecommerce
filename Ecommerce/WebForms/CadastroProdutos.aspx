@@ -9,7 +9,7 @@
             <div class="form-group col-2">
                 <label for="txtCodigo">Código</label>
                 <div class="input-group">
-                    <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control no-spin" placeholder="Código" MaxLength="10" TextMode="Number"></asp:TextBox>
+                    <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control no-spin" placeholder="Código" oninput="RestringirASomenteNumeros(this)" MaxLength="10" ></asp:TextBox>
                     <div class="input-group-append">
                         <asp:Button ID="btnCarregar" runat="server" Text="Carregar" CssClass="btn btn-primary" CausesValidation="False" OnClick="BtnCarregar_Click"/>
                     </div>
@@ -37,7 +37,7 @@
 
             <div class="form-group col-2">
                 <label for="txtSaldoEstoque">Saldo em Estoque</label>
-                <asp:TextBox ID="txtSaldoEstoque" runat="server" CssClass="form-control no-spin" MaxLength="5" placeholder="Saldo em Estoque" TextMode="Number" oninput="formatarInteiro(this)"></asp:TextBox>
+                <asp:TextBox ID="txtSaldoEstoque" runat="server" CssClass="form-control no-spin" MaxLength="8" placeholder="Saldo em Estoque" oninput="RestringirASomenteNumeros(this)"></asp:TextBox>
                 <asp:RequiredFieldValidator
                     ID="rfvSaldoEstoque"
                     runat="server"
@@ -50,7 +50,7 @@
 
             <div class="form-group col-2">
                 <label for="txtPrecoUnitario">Preço Unitário</label>
-                <asp:TextBox ID="txtPrecoUnitario" runat="server" CssClass="dinheiro form-control" MaxLength="10" placeholder="Preço Unitário" oninput="formatarMoeda(this)"></asp:TextBox>
+                <asp:TextBox ID="txtPrecoUnitario" runat="server" CssClass="dinheiro form-control" MaxLength="12" placeholder="Preço Unitário" oninput="RestringirASomenteNumeros(this)"></asp:TextBox>
                 <asp:RequiredFieldValidator
                     ID="rfvPrecoUnitario"
                     runat="server"
