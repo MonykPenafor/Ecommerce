@@ -34,7 +34,7 @@
                     <label id="lblSaldoEstoque" runat="server"></label>
                 </div>
 
-                <div class="col-1">
+                <div class="col-2">
                     <div class="form-group">
                         <label for="txtQuantidade">Qtde.</label>
                         <asp:TextBox ID="txtQuantidade" runat="server" CssClass="form-control" TextMode="Number" placeholder="-" oninput="formatarInteiro(this)"></asp:TextBox>
@@ -46,12 +46,12 @@
                         <asp:TextBox ID="txtPrecoUnitario" runat="server" CssClass="form-control" Enabled="False" placeholder="-"></asp:TextBox>
                     </div>
                 </div>
-                <div class="col-2">
+                <%--                <div class="col-2">
                     <div class="form-group">
                         <label for="txtPrecoTotalProduto">Total</label>
                         <asp:TextBox ID="txtPrecoTotalProduto" runat="server" CssClass="form-control" Enabled="False" placeholder="-"></asp:TextBox>
                     </div>
-                </div>
+                </div>--%>
                 <div class="col-1">
                     <div class="form-group">
                         <label for="btnInserir" style="color: transparent">---</label>
@@ -79,11 +79,11 @@
                                 <ItemStyle Width="10%" />
                                 <HeaderStyle Width="10%" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="PrecoUnitario" HeaderText="Preço Unitário">
+                            <asp:BoundField DataField="PrecoUnitario" HeaderText="Preço Unitário" DataFormatString="{0:C}" >
                                 <ItemStyle Width="10%" />
                                 <HeaderStyle Width="10%" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="ValorTotalItem" HeaderText="Valor Total">
+                            <asp:BoundField DataField="ValorTotalItem" HeaderText="Valor Total" DataFormatString="{0:C}" >
                                 <ItemStyle Width="10%" />
                                 <HeaderStyle Width="10%" />
                             </asp:BoundField>
@@ -92,8 +92,7 @@
 
                     <div class="col text-end ">
                         <div class="row mb-3 " style="display: inline-block;">
-                            <asp:Label ID="lblTotalVendaLabel" runat="server" CssClass="font-weight-bold" Text="Total da Venda: R$ "/>
-                            <asp:Label ID="lblTotalVenda" runat="server" CssClass="font-weight-bold" Text="0,00" />
+                            <asp:Label ID="lblTotalVenda" runat="server" CssClass="font-weight-bold" Text="Total da Venda: R$ 0,00" />
                         </div>
 
                         <div class="row-1">

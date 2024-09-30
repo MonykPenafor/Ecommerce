@@ -35,32 +35,3 @@ function closeModal() {
     $('#modalDetalhes').modal('hide');
 }
 
-
-
-
-
-
-
-
-
-
-
-function atualizarPrecoUnitario(id) {
-
-    var ddlProdutos = document.getElementById('<%= ddlProdutos.ClientID %>');
-    var txtPrecoUnitario = document.getElementById('<%= txtPrecoUnitario.ClientID %>');
-
-    var precoSelecionado = ddlProdutos.value;
-
-    txtPrecoUnitario.value = "R$ " + precoSelecionado + ",00";
-}
-
-
-
-    function confirmarMensagem(mensagem, callback) {
-        if (confirm(mensagem)) {
-        callback(true);
-        } else {
-        callback(false);
-        }
-    }

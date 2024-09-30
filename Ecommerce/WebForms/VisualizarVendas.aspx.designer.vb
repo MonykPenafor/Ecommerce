@@ -32,11 +32,47 @@ Partial Public Class VisualizarVendas
     Protected WithEvents lblTotalVendas As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblDetalhesVenda control.
+    '''lblIdVenda control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblDetalhesVenda As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblIdVenda As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblNomeCliente control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblNomeCliente As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblDataVenda control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDataVenda As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblValorTotalVenda control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblValorTotalVenda As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''gvItensVenda control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvItensVenda As Global.System.Web.UI.WebControls.GridView
 End Class

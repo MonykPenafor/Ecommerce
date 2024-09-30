@@ -68,15 +68,6 @@ Partial Public Class RegistroVendas
     Protected WithEvents txtPrecoUnitario As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txtPrecoTotalProduto control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtPrecoTotalProduto As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
     '''btnInserir control.
     '''</summary>
     '''<remarks>
@@ -111,15 +102,6 @@ Partial Public Class RegistroVendas
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvProdutos As Global.System.Web.UI.WebControls.GridView
-
-    '''<summary>
-    '''lblTotalVendaLabel control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblTotalVendaLabel As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lblTotalVenda control.

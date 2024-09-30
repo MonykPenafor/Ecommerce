@@ -58,7 +58,6 @@ END;
 
 
 
-
 CREATE PROCEDURE GetVendaDetalhada
     @idVenda INT
 AS
@@ -67,14 +66,12 @@ BEGIN
 
     SELECT 
         v.idVenda,
-        v.nomeCliente,
-        v.valorTotal AS ValorTotalVenda,
-        v.dataVenda,
         iv.idItensVenda,
         iv.quantidade,
         iv.precoUnitario,
         iv.valorTotalItem,
-        p.descricao AS DescricaoProduto
+        p.descricao,
+		p.idProduto
     FROM 
         Vendas v
     INNER JOIN 
@@ -86,4 +83,4 @@ BEGIN
 END;
 
 
-EXEC GetVendaDetalhada @idVenda = 4;  -- Substitua 1 pelo ID da venda que deseja consultar
+EXEC GetVendaDetalhada @idVenda = 4; 

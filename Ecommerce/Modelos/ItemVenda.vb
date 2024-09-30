@@ -1,5 +1,6 @@
 ﻿Public Class ItemVenda
 
+    Public Property IdItemVenda As Integer
     Public Property IdProduto As Integer
     Public Property DescricaoProduto As String
     Public Property Quantidade As Integer

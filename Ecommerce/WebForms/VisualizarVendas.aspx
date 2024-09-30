@@ -4,7 +4,7 @@
     <main aria-labelledby="title">
         <h2 id="title"><%: Title %>.</h2>
 
-        <asp:GridView ID="gvVendas" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered mb-3" OnRowCommand="gvVendas_RowCommand">
+        <asp:GridView ID="gvVendas" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered mb-3" DataKeyNames="IdVenda" OnRowCommand="gvVendas_RowCommand">
             <Columns>
                 <asp:BoundField DataField="IdVenda" HeaderText="ID">
                     <ItemStyle Width="7%" />
@@ -18,14 +18,15 @@
                     <ItemStyle Width="15%" />
                     <HeaderStyle Width="15%" />
                 </asp:BoundField>
-                <asp:BoundField DataField="ValorTotal" HeaderText="Valor Total">
+                <asp:BoundField DataField="ValorTotal" HeaderText="Valor Total" DataFormatString="{0:C}" >
                     <ItemStyle Width="10%" />
                     <HeaderStyle Width="10%" />
                 </asp:BoundField>
 
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:Button ID="btnVerDetalhes" runat="server" Text="Ver Detalhes" CommandName="VerDetalhes" CommandArgument='<%# Eval("IdVenda") %>' CssClass="btn btn-primary" />
+                        
+                <asp:Button ID="Button1" runat="server" Text="Ver Detalhes" CommandName="VerDetalhes" CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn btn-primary" />
                     </ItemTemplate>
                     <ItemStyle Width="10%" />
                     <HeaderStyle Width="10%" />
@@ -40,10 +41,9 @@
             </div>
         </div>
 
-
         <!-- Modal do Bootstrap -->
         <div class="modal fade" id="modalDetalhes" tabindex="-1" role="dialog" aria-labelledby="modalDetalhesLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalDetalhesLabel">Detalhes da Venda</h5>
@@ -52,10 +52,27 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <!-- Informações principais da venda -->
+                        <p><strong>ID da Venda:</strong>
+                            <asp:Label ID="lblIdVenda" runat="server"></asp:Label></p>
+                        <p><strong>Cliente:</strong>
+                            <asp:Label ID="lblNomeCliente" runat="server"></asp:Label></p>
+                        <p><strong>Data da Venda:</strong>
+                            <asp:Label ID="lblDataVenda" runat="server"></asp:Label></p>
+                        <p><strong>Valor Total da Venda:</strong>
+                            <asp:Label ID="lblValorTotalVenda" runat="server"></asp:Label></p>
 
+                        <!-- GridView para exibir os itens da venda -->
+                        <asp:GridView ID="gvItensVenda" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered">
+                            <Columns>
+                                <asp:BoundField DataField="IdProduto" HeaderText="ID" />
+                                <asp:BoundField DataField="DescricaoProduto" HeaderText="Produto" />
+                                <asp:BoundField DataField="quantidade" HeaderText="Quantidade" />
+                                <asp:BoundField DataField="precoUnitario" HeaderText="Preço Unitário" DataFormatString="{0:C}" />
+                                <asp:BoundField DataField="valorTotalItem" HeaderText="Valor Total do Item" DataFormatString="{0:C}" />
+                            </Columns>
+                        </asp:GridView>
 
-
-                        <asp:Label ID="lblDetalhesVenda" runat="server" Text="Aqui vão os detalhes da venda."></asp:Label>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeModal()">Voltar</button>

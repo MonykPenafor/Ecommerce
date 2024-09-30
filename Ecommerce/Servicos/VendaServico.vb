@@ -54,7 +54,6 @@ Public Class VendaServico
         End Try
     End Function
 
-
     Public Function ConsultarVendaPeloCodigo(codigo As String) As Venda
         Try
             Using connection As New SqlConnection(connectionString)
@@ -127,6 +126,38 @@ Public Class VendaServico
         Catch ex As Exception
             Throw New Exception("Erro ao consultar as vendas: " & ex.Message)
         End Try
+    End Function
+
+    Public Function ConsultarItensVendaPeloIdDaVenda(idVenda As Integer) As List(Of ItemVenda)
+
+        Dim itensVenda As New List(Of ItemVenda)()
+
+        Using conn As New SqlConnection(connectionString)
+            Using cmd As New SqlCommand("GetVendaDetalhada", conn)
+                cmd.CommandType = CommandType.StoredProcedure
+                cmd.Parameters.AddWithValue("@idVenda", idVenda)
+
+                conn.Open()
+                Using reader As SqlDataReader = cmd.ExecuteReader()
+                    If reader.HasRows Then
+                        While reader.Read()
+                            Dim item As New ItemVenda()
+
+                            item.IdItemVenda = Convert.ToInt32(reader("idItensVenda"))
+                            item.IdProduto = Convert.ToInt32(reader("idProduto"))
+                            item.Quantidade = Convert.ToInt32(reader("quantidade"))
+                            item.PrecoUnitario = Convert.ToDecimal(reader("precoUnitario"))
+                            item.ValorTotalItem = Convert.ToDecimal(reader("valorTotalItem"))
+                            item.DescricaoProduto = reader("descricao").ToString()
+
+                            itensVenda.Add(item)
+                        End While
+                    End If
+                End Using
+            End Using
+        End Using
+
+        Return itensVenda
     End Function
 
 End Class
