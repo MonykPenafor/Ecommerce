@@ -18,15 +18,15 @@
                     <ItemStyle Width="15%" />
                     <HeaderStyle Width="15%" />
                 </asp:BoundField>
-                <asp:BoundField DataField="ValorTotal" HeaderText="Valor Total" DataFormatString="{0:C}" >
+                <asp:BoundField DataField="ValorTotal" HeaderText="Valor Total" DataFormatString="{0:C}">
                     <ItemStyle Width="10%" />
                     <HeaderStyle Width="10%" />
                 </asp:BoundField>
 
                 <asp:TemplateField>
                     <ItemTemplate>
-                        
-                <asp:Button ID="btnVerDetalhes" runat="server" Text="Ver Detalhes" CommandName="VerDetalhes" CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn btn-primary" />
+
+                        <asp:Button ID="btnVerDetalhes" runat="server" Text="Ver Detalhes" CommandName="VerDetalhes" CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn btn-primary" />
                     </ItemTemplate>
                     <ItemStyle Width="10%" />
                     <HeaderStyle Width="10%" />
@@ -53,14 +53,22 @@
                     </div>
                     <div class="modal-body">
                         <!-- Informações principais da venda -->
-                        <p><strong>ID da Venda:</strong>
-                            <asp:Label ID="lblIdVenda" runat="server"></asp:Label></p>
-                        <p><strong>Cliente:</strong>
-                            <asp:Label ID="lblNomeCliente" runat="server"></asp:Label></p>
-                        <p><strong>Data da Venda:</strong>
-                            <asp:Label ID="lblDataVenda" runat="server"></asp:Label></p>
-                        <p><strong>Valor Total da Venda:</strong>
-                            <asp:Label ID="lblValorTotalVenda" CssClass="dinheiro" runat="server"></asp:Label></p>
+                        <p>
+                            <strong>ID da Venda:</strong>
+                            <asp:Label ID="lblIdVenda" runat="server"></asp:Label>
+                        </p>
+                        <p>
+                            <strong>Cliente:</strong>
+                            <asp:Label ID="lblNomeCliente" runat="server"></asp:Label>
+                        </p>
+                        <p>
+                            <strong>Data da Venda:</strong>
+                            <asp:Label ID="lblDataVenda" runat="server"></asp:Label>
+                        </p>
+                        <p>
+                            <strong>Valor Total da Venda:</strong>
+                            <asp:Label ID="lblValorTotalVenda" CssClass="dinheiro" runat="server"></asp:Label>
+                        </p>
 
                         <!-- GridView para exibir os itens da venda -->
                         <asp:GridView ID="gvItensVenda" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered">
@@ -83,4 +91,12 @@
 
 
     </main>
+        <script>
+            window.onload = function () {
+                // Verifica se o formulário foi submetido
+                if (window.history.replaceState) {
+                    window.history.replaceState(null, null, window.location.href);
+                }
+            };
+        </script>
 </asp:Content>

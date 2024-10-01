@@ -12,8 +12,7 @@ Public Class VisualizarVendas
     End Sub
 
     Private Sub CarregarVendas()
-
-        Dim vendas As List(Of Venda) = vendaServico.ConsultarVendas()
+        Dim vendas As List(Of Venda) = VendaServico.ConsultarVendas()
 
         gvVendas.DataSource = vendas
         gvVendas.DataBind()

@@ -50,7 +50,7 @@
 
             <div class="form-group col-2">
                 <label for="txtPrecoUnitario">Preço Unitário</label>
-                <asp:TextBox ID="txtPrecoUnitario" runat="server" CssClass="dinheiro form-control" MaxLength="12" placeholder="Preço Unitário" oninput="RestringirASomenteNumeros(this)"></asp:TextBox>
+                <asp:TextBox ID="txtPrecoUnitario" runat="server" CssClass="dinheiro form-control" MaxLength="12" placeholder="Preço Unitário" ></asp:TextBox>
                 <asp:RequiredFieldValidator
                     ID="rfvPrecoUnitario"
                     runat="server"
