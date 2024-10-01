@@ -37,7 +37,7 @@
                 <div class="col-2">
                     <div class="form-group">
                         <label for="txtQuantidade">Qtde.</label>
-                        <asp:TextBox ID="txtQuantidade" runat="server" CssClass="form-control" TextMode="Number" placeholder="-" oninput="formatarInteiro(this)"></asp:TextBox>
+                        <asp:TextBox ID="txtQuantidade" runat="server" CssClass="form-control" TextMode="Number" placeholder="-" oninput="RestringirASomenteNumeros(this)"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-2">

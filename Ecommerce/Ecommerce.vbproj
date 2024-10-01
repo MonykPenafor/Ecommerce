@@ -216,7 +216,7 @@
     <Compile Include="Modelos\Venda.vb" />
     <Compile Include="Servicos\ProdutoServico.vb" />
     <Compile Include="Servicos\VendaServico.vb" />
-    <Compile Include="Utils\Toast.vb" />
+    <Compile Include="Utils\Utils.vb" />
     <Compile Include="WebForms\CadastroProdutos.aspx.designer.vb">
       <DependentUpon>CadastroProdutos.aspx</DependentUpon>
     </Compile>

@@ -75,7 +75,7 @@ Public Class RegistroVendas
                 Dim produtoExistente As ItemVenda = ItensVenda.FirstOrDefault(Function(item) item.IdProduto = idProduto)
 
                 If produtoExistente IsNot Nothing Then
-                    Toast.MostrarMensagem(Me, "Este produto já foi inserido na venda.")
+                    Utils.MostrarMensagem(Me, "Este produto já foi inserido na venda.")
                     Return
                 End If
 
@@ -90,7 +90,7 @@ Public Class RegistroVendas
                 Dim erros As List(Of String) = itemVenda.Validar()
 
                 If erros.Count > 0 Then
-                    Toast.MostrarMensagem(Me, erros(0))
+                    Utils.MostrarMensagem(Me, erros(0))
                 Else
 
                     ScriptManager.RegisterStartupScript(Me, Me.GetType(), "limparCampos", "limparCamposDadosDaVenda();", True)
@@ -102,10 +102,10 @@ Public Class RegistroVendas
                     pnlItensVenda.Visible = True
                 End If
             Else
-                Toast.MostrarMensagem(Me, "Informe a quantidade!")
+                Utils.MostrarMensagem(Me, "Informe a quantidade!")
             End If
         Else
-            Toast.MostrarMensagem(Me, "Selecione um produto para inserir!")
+            Utils.MostrarMensagem(Me, "Selecione um produto para inserir!")
         End If
 
     End Sub
@@ -139,7 +139,7 @@ Public Class RegistroVendas
                 Dim erros As List(Of String) = venda.Validar()
 
                 If erros.Count > 0 Then
-                    Toast.MostrarMensagem(Me, erros(0))
+                    Utils.MostrarMensagem(Me, erros(0))
                 Else
                     Dim resultado As String = VendaServico.SalvarVenda(venda)
 
@@ -148,13 +148,13 @@ Public Class RegistroVendas
                         Response.Redirect("PaginaPrincipal.aspx")
                     End If
 
-                    Toast.MostrarMensagem(Me, resultado)
+                    Utils.MostrarMensagem(Me, resultado)
                 End If
             Else
-                Toast.MostrarMensagem(Me, "Nenhum item foi adicionado à venda!")
+                Utils.MostrarMensagem(Me, "Nenhum item foi adicionado à venda!")
             End If
         Else
-            Toast.MostrarMensagem(Me, "Nome do cliente é obrigatório!")
+            Utils.MostrarMensagem(Me, "Nome do cliente é obrigatório!")
         End If
     End Sub
 

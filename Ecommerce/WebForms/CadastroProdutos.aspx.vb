@@ -14,7 +14,7 @@ Public Class CadastroProdutos
         Dim erroMensagem As String = ValidarCampos()
 
         If Not String.IsNullOrEmpty(erroMensagem) Then
-            Toast.MostrarMensagem(Me, erroMensagem)
+            Utils.MostrarMensagem(Me, erroMensagem)
             Return
         End If
 
@@ -28,7 +28,7 @@ Public Class CadastroProdutos
         Dim erros As List(Of String) = produto.Validar()
 
         If erros.Count > 0 Then
-            Toast.MostrarMensagem(Me, erros(0))
+            Utils.MostrarMensagem(Me, erros(0))
         Else
             Dim produtoNaoCadastrado As Boolean = ProdutoServico.ConsultarProdutoPeloCodigo(produto.IdProduto) Is Nothing
             Dim resultado As String
@@ -74,7 +74,7 @@ Public Class CadastroProdutos
             Dim produto As Produto = ProdutoServico.ConsultarProdutoPeloCodigo(txtCodigo.Text)
 
             If produto IsNot Nothing Then
-                txtDescricao.Text = produto.Descricao
+                txtDescricao.Text = Utils.LimparEspacos(produto.Descricao)
                 txtPrecoUnitario.Text = produto.PrecoUnitario
                 txtSaldoEstoque.Text = produto.SaldoEstoque
             Else

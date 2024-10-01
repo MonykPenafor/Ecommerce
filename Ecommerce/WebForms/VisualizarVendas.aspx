@@ -26,7 +26,7 @@
                 <asp:TemplateField>
                     <ItemTemplate>
                         
-                <asp:Button ID="Button1" runat="server" Text="Ver Detalhes" CommandName="VerDetalhes" CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn btn-primary" />
+                <asp:Button ID="btnVerDetalhes" runat="server" Text="Ver Detalhes" CommandName="VerDetalhes" CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn btn-primary" />
                     </ItemTemplate>
                     <ItemStyle Width="10%" />
                     <HeaderStyle Width="10%" />
